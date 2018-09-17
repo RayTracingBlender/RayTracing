@@ -1,0 +1,5 @@
+include_directories(C:/Users/Chris/AppData/Local/Programs/Python/Python35/include)
+link_directories(C:/Users/Chris/AppData/Local/Programs/Python/Python35/libs)
+message(Python_libs)
+add_library(spam SHARED include.h main.cpp)
+set_target_properties(spam PROPERTIES SUFFIX ".pyd")
