@@ -1,8 +1,5 @@
-include_directories(${Python_include})
-link_directories(${Python_libs})
-set(Library_files 
-	include.h 
-	main.cpp)
-
-add_library(_JPCEngine SHARED ${Library_files})
-set_target_properties(_JPCEngine PROPERTIES SUFFIX ".pyd")
+include_directories(C:/Users/Chris/AppData/Local/Programs/Python/Python35/include)
+link_directories(C:/Users/Chris/AppData/Local/Programs/Python/Python35/libs)
+message(Python_libs)
+add_library(spam SHARED include.h main.cpp)
+set_target_properties(spam PROPERTIES SUFFIX ".pyd")
