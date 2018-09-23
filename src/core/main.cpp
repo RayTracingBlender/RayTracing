@@ -50,7 +50,7 @@ static struct PyModuleDef JPCEnginemodule = {
 };
 
 PyMODINIT_FUNC
-PyInit_jpcengine(void)
+PyInit__JPCEngine(void)
 {
 	return PyModule_Create(&JPCEnginemodule);
 }
