@@ -1,0 +1,22 @@
+scene={
+Objects:[
+        {
+        type:mesh,
+        scale:(0.5,0.5,0.5),
+        location:(1,1,1),
+        rotation:(1.220,0.1234,1.2343),
+        vert:[[1,2,3],[3,4,5],[1,0,0]],
+        face:[
+            loop_start:0,
+            loop_total:3,
+            normal:[1,3,4]
+            ],
+        material:.....,
+        },
+        {
+        type:light,
+        location:(5,5,5),
+        rotation:(1.220,0.1234,1.2343),
+        }
+        
+}
