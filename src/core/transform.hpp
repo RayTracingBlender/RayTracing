@@ -8,17 +8,17 @@ namespace rt{
 
 struct Matrix4x4 {
 public:
-	float m[4][4];
+	Float m[4][4];
 
 	Matrix4x4() {
 		m[0][0] = m[1][1] = m[2][2] = m[3][3] = 1.f;
 		m[0][1] = m[0][2] = m[0][3] = m[1][0] = m[1][2] = m[1][3] = m[2][0] = m[2][1] = m[2][3] = m[3][0] = m[3][1] = m[3][2] = 0.f;
 	}
-	Matrix4x4(float mat[4][4]);
-	Matrix4x4(float t00, float t01, float t02, float t03,
-			  float t10, float t11, float t12, float t13,
-			  float t20, float t21, float t22, float t23,
-			  float t30, float t31, float t32, float t33);
+	Matrix4x4(Float mat[4][4]);
+	Matrix4x4(Float t00, Float t01, Float t02, Float t03,
+			  Float t10, Float t11, Float t12, Float t13,
+			  Float t20, Float t21, Float t22, Float t23,
+			  Float t30, Float t31, Float t32, Float t33);
 
 	friend Matrix4x4 Inverse(const Matrix4x4 &);
 
@@ -56,7 +56,7 @@ class Transform {
 private:
 	Matrix4x4 m, mInv;
 public:
-	Transform(const float mat4[4][4]) {
+	Transform(const Float mat4[4][4]) {
 		m = Matrix4x4(mat4[0][0], mat4[1][0], mat4[2][0], mat4[3][0],
 			mat4[0][1], mat4[1][1], mat4[2][1], mat4[3][1],
 			mat4[0][2], mat4[1][2], mat4[2][2], mat4[3][2],
@@ -65,9 +65,9 @@ public:
 	}
 
 	bool HasScale() const {
-		float a = (*this)(Vector3f(1, 0, 0)).LengthSquared();
-		float b = (*this)(Vector3f(0, 1, 0)).LengthSquared();
-		float c = (*this)(Vector3f(0, 0, 1)).LengthSquared();
+		Float a = (*this)(Vector3f(1, 0, 0)).LengthSquared();
+		Float b = (*this)(Vector3f(0, 1, 0)).LengthSquared();
+		Float c = (*this)(Vector3f(0, 0, 1)).LengthSquared();
 		return(NOT_ONE(a) || NOT_ONE(b) || NOT_ONE(c));
 	}
 
@@ -90,11 +90,11 @@ public:
 };
 
 Transform Translate(const Vector3f &delta);
-Transform Scale(float x, float y, float z);
-Transform RotateX(float theta);
-Transform RotateY(float theta);
-Transform RotateZ(float theta);
-Transform Rotate(float theta, const Vector3f &axis);
+Transform Scale(Float x, Float y, Float z);
+Transform RotateX(Float theta);
+Transform RotateY(Float theta);
+Transform RotateZ(Float theta);
+Transform Rotate(Float theta, const Vector3f &axis);
 Transform LookAt(const Point3f &pos, const Point3f &look, const Vector3f &up);
 
 template <typename T> inline Vector3<T> Transform::operator()(const Vector3<T> &v) const {
