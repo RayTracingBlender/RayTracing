@@ -1,15 +1,5 @@
 #include "transform.hpp"
 
-float Degrees(float radians)
-{
-	return (radians * 180.0f) / PI;
-}
-
-float Radians(float degrees)
-{
-	return (degrees * PI) / 180.0f;
-}
-
 namespace rt{
 
 Matrix4x4::Matrix4x4(float mat[4][4]) { std::memcpy(m, mat, 16 * sizeof(float)); }
