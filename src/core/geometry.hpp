@@ -14,7 +14,7 @@ public:
 	T x, y;
 };
 
-typedef Vector2<float> Vector2f;
+typedef Vector2<Float> Vector2f;
 typedef Vector2<int> Vector2i;
 
 template <typename T> class Vector3 {
@@ -79,13 +79,13 @@ public:
 	
 	Vector3<T> operator/(T f) const {
 		assert(f != 0);
-		float inv = (float)1 / f;
+		Float inv = (Float)1 / f;
 		return Vector3(x * inv, y * inv, z * inv);
 	}
 
 	Vector3<T> &operator/=(T f) {
 		assert(f != 0);
-		float inv = (float)1 / f;
+		Float inv = (Float)1 / f;
 		x *= inv;
 		y *= inv;
 		z *= inv;
@@ -94,13 +94,13 @@ public:
 
 	Vector3<T> operator -() const { return Vector3<T>(-x, -y, -z); }
 
-	float LengthSquared() const { return x * x + y * y + z * z; }	
-	float Length() const { return std::sqrt(LengthSquared()); }
+	Float LengthSquared() const { return x * x + y * y + z * z; }	
+	Float Length() const { return std::sqrt(LengthSquared()); }
 
 	
 };
 
-typedef Vector3<float> Vector3f;
+typedef Vector3<Float> Vector3f;
 typedef Vector3<int> Vector3i;
 
 template <typename T> Vector3<T> Abs(const Vector3<T> &v) {
@@ -225,7 +225,7 @@ public:
 		return *this;
 	}
 };
-typedef Point3<float> Point3f;
+typedef Point3<Float> Point3f;
 typedef Point3<int> Point3i;
 
 
@@ -241,18 +241,18 @@ public:
 		assert(!HasNaNs());
 	}
 };
-typedef Point2<float> Point2f;
+typedef Point2<Float> Point2f;
 typedef Point2<int> Point2i;
 
-template <typename T> inline float Distance(const Point3<T> &p1, const Point3<T> &p2) {
+template <typename T> inline Float Distance(const Point3<T> &p1, const Point3<T> &p2) {
 	return (p1 - p2).Length();
 }
 
-template <typename T> inline float DistanceSquared(const Point3<T> &p1, const Point3<T> &p2) {
+template <typename T> inline Float DistanceSquared(const Point3<T> &p1, const Point3<T> &p2) {
 	return (p1 - p2).LengthSquared();
 }
 
-template <typename T> Point3<T> Lerp(float t, const Point3<T> &p1, const Point3<T> &p2) {
+template <typename T> Point3<T> Lerp(Float t, const Point3<T> &p1, const Point3<T> &p2) {
 	return (1 - t) * p0 + t * p1;
 }
 
@@ -354,13 +354,13 @@ public:
 
 	Normal3<T> operator/(T f) const {
 		assert(f != 0);
-		float inv = (float)1 / f;
+		Float inv = (Float)1 / f;
 		return Normal3(x * inv, y * inv, z * inv);
 	}
 
 	Normal3<T> &operator/=(T f) {
 		assert(f != 0);
-		float inv = (float)1 / f;
+		Float inv = (Float)1 / f;
 		x *= inv;
 		y *= inv;
 		z *= inv;
@@ -369,13 +369,13 @@ public:
 
 	Normal3<T> operator -() const { return Normal3<T>(-x, -y, -z); }
 
-	float LengthSquared() const { return x * x + y * y + z * z; }
-	float Length() const { return std::sqrt(LengthSquared()); }
+	Float LengthSquared() const { return x * x + y * y + z * z; }
+	Float Length() const { return std::sqrt(LengthSquared()); }
 };
 
 
 
-typedef Normal3<float> Normal3f;
+typedef Normal3<Float> Normal3f;
 
 template <typename T> Normal3<T> Dot(const Normal3<T> &n1, const Normal3<T> &n2) {
 	return n1.x * n2.x + n1.y * n2.y + n1.z * n2.z;
@@ -444,14 +444,14 @@ class Ray {
 public:
 	Point3f o;
 	Vector3f d;
-	mutable float tMax;
-	float time;
+	mutable Float tMax;
+	Float time;
 	//const Medium *medium;
 
 	Ray() : tMax(INFINITY), time(0.f) /**, medium(nullptr)*/{};
-	Ray(const Point3f &o, const Vector3f &d, float tMax = INFINITY, float time = 0.f /**, const *medium = nullptr*/) : o(o), d(d), tMax(tMax), time(time) /**, medium(medium)*/ {}
+	Ray(const Point3f &o, const Vector3f &d, Float tMax = INFINITY, Float time = 0.f /**, const *medium = nullptr*/) : o(o), d(d), tMax(tMax), time(time) /**, medium(medium)*/ {}
 
-	Point3f operator()(float t) const { return o + d * t; };
+	Point3f operator()(Float t) const { return o + d * t; };
 
 
 };
@@ -463,12 +463,12 @@ public:
 	Vector3f rxDirection, ryDirection;
 
 	RayDifferntial() { hasDifferntials = false; }
-	RayDifferntial(const Point3f &o, const Vector3f &d, float tMax = INFINITY, float time = 0.f /**, const *medium = nullptr*/) : Ray(o, d, tMax, time /**, medium*/) { hasDifferntials = false; }
+	RayDifferntial(const Point3f &o, const Vector3f &d, Float tMax = INFINITY, Float time = 0.f /**, const *medium = nullptr*/) : Ray(o, d, tMax, time /**, medium*/) { hasDifferntials = false; }
 	RayDifferntial(const Ray &ray) : Ray(ray) {
 		hasDifferntials = false;
 	}
 
-	void ScaleDifferentials(float s) {
+	void ScaleDifferentials(Float s) {
 		rxOrigin    = o + (rxOrigin - o)    * s;
 		ryOrigin    = o + (ryOrigin - o)    * s;
 		rxDirection = d + (rxDirection - d) * s;
@@ -493,7 +493,7 @@ template <typename T> class Bounds2 {
 public:
 };
 
-typedef Bounds2<float> Bounds2f;
+typedef Bounds2<Float> Bounds2f;
 typedef Bounds2<int>   Bounds2i;
 
 template <typename T> class Bounds3 {
@@ -565,13 +565,13 @@ public:
 		return o;
 	}
 
-	void BoundingSphere(Point3<T> *center, float *radius) const {
+	void BoundingSphere(Point3<T> *center, Float *radius) const {
 		*center = (pMin + pMax) / 2;
 		*radius = Inside(*center, *this) ? Distance(*center, pMax) : 0;
 	}
 };
 
-typedef Bounds3<float> Bounds3f;
+typedef Bounds3<Float> Bounds3f;
 typedef Bounds3<int>   Bounds3i;
 
 template <typename T> Bounds3<T> Union(const Bounds3<T> &b, const Point3<T> &p) {
