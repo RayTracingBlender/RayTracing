@@ -2,12 +2,12 @@
 
 namespace rt{
 
-Matrix4x4::Matrix4x4(float mat[4][4]) { std::memcpy(m, mat, 16 * sizeof(float)); }
+Matrix4x4::Matrix4x4(Float mat[4][4]) { std::memcpy(m, mat, 16 * sizeof(Float)); }
 
-Matrix4x4::Matrix4x4(float t00, float t01, float t02, float t03, float t10,
-	float t11, float t12, float t13, float t20, float t21,
-	float t22, float t23, float t30, float t31, float t32,
-	float t33) {
+Matrix4x4::Matrix4x4(Float t00, Float t01, Float t02, Float t03, Float t10,
+	Float t11, Float t12, Float t13, Float t20, Float t21,
+	Float t22, Float t23, Float t30, Float t31, Float t32,
+	Float t33) {
 	m[0][0] = t00;
 	m[0][1] = t01;
 	m[0][2] = t02;
@@ -29,18 +29,18 @@ Matrix4x4::Matrix4x4(float t00, float t01, float t02, float t03, float t10,
 Matrix4x4 Inverse(const Matrix4x4 &m) {
 	int indxc[4], indxr[4];
 	int ipiv[4] = { 0, 0, 0, 0 };
-	float minv[4][4];
-	memcpy(minv, m.m, 4 * 4 * sizeof(float));
+	Float minv[4][4];
+	memcpy(minv, m.m, 4 * 4 * sizeof(Float));
 	for (int i = 0; i < 4; i++) {
 		int irow = 0, icol = 0;
-		float big = 0.f;
+		Float big = 0.f;
 		// Choose pivot
 		for (int j = 0; j < 4; j++) {
 			if (ipiv[j] != 1) {
 				for (int k = 0; k < 4; k++) {
 					if (ipiv[k] == 0) {
 						if (std::abs(minv[j][k]) >= big) {
-							big = float(std::abs(minv[j][k]));
+							big = Float(std::abs(minv[j][k]));
 							irow = j;
 							icol = k;
 						}
@@ -57,14 +57,14 @@ Matrix4x4 Inverse(const Matrix4x4 &m) {
 		indxc[i] = icol;
 
 		// Set $m[icol][icol]$ to one by scaling row _icol_ appropriately
-		float pivinv = 1. / minv[icol][icol];
+		Float pivinv = 1. / minv[icol][icol];
 		minv[icol][icol] = 1.;
 		for (int j = 0; j < 4; j++) minv[icol][j] *= pivinv;
 
 		// Subtract this row from others to zero out their columns
 		for (int j = 0; j < 4; j++) {
 			if (j != icol) {
-				float save = minv[j][icol];
+				Float save = minv[j][icol];
 				minv[j][icol] = 0;
 				for (int k = 0; k < 4; k++) minv[j][k] -= minv[icol][k] * save;
 			}
@@ -99,7 +99,7 @@ Transform Translate(const Vector3f &delta) {
 	return Transform(m, mInv);
 }
 
-Transform Scale(float x, float y, float z) {
+Transform Scale(Float x, Float y, Float z) {
 	Matrix4x4    m(x, 0, 0, 0,
 		0, y, 0, 0,
 		0, 0, z, 0,
@@ -111,9 +111,9 @@ Transform Scale(float x, float y, float z) {
 	return Transform(m, mInv);
 }
 
-Transform RotateX(float theta) {
-	float sinTheta = std::sin(Radians(theta));
-	float cosTheta = std::cos(Radians(theta));
+Transform RotateX(Float theta) {
+	Float sinTheta = std::sin(Radians(theta));
+	Float cosTheta = std::cos(Radians(theta));
 	Matrix4x4 m(1, 0, 0, 0,
 		0, cosTheta, -sinTheta, 0,
 		0, sinTheta, cosTheta, 0,
@@ -121,9 +121,9 @@ Transform RotateX(float theta) {
 	return Transform(m, Transpose(m));
 }
 
-Transform RotateY(float theta) {
-	float sinTheta = std::sin(Radians(theta));
-	float cosTheta = std::cos(Radians(theta));
+Transform RotateY(Float theta) {
+	Float sinTheta = std::sin(Radians(theta));
+	Float cosTheta = std::cos(Radians(theta));
 	Matrix4x4 m(cosTheta, 0, sinTheta, 0,
 		0, 1, 0, 0,
 		-sinTheta, 0, cosTheta, 0,
@@ -131,9 +131,9 @@ Transform RotateY(float theta) {
 	return Transform(m, Transpose(m));
 }
 
-Transform RotateZ(float theta) {
-	float sinTheta = std::sin(Radians(theta));
-	float cosTheta = std::cos(Radians(theta));
+Transform RotateZ(Float theta) {
+	Float sinTheta = std::sin(Radians(theta));
+	Float cosTheta = std::cos(Radians(theta));
 	Matrix4x4 m(cosTheta, -sinTheta, 0, 0,
 		sinTheta, cosTheta, 0, 0,
 		0, 0, 1, 0,
@@ -141,10 +141,10 @@ Transform RotateZ(float theta) {
 	return Transform(m, Transpose(m));
 }
 
-Transform Rotate(float theta, const Vector3f &axis) {
+Transform Rotate(Float theta, const Vector3f &axis) {
 	Vector3f a = Normalize(axis);
-	float sinTheta = std::sin(Radians(theta));
-	float cosTheta = std::cos(Radians(theta));
+	Float sinTheta = std::sin(Radians(theta));
+	Float cosTheta = std::cos(Radians(theta));
 
 	Matrix4x4 m;
 
@@ -204,7 +204,7 @@ Transform Transform::operator*(const Transform &t2) const {
 }
 
 bool Transform::SwapsHandedness() const {
-	float det = m.m[0][0] * (m.m[1][1] * m.m[2][2] - m.m[1][2] * m.m[2][1]) -
+	Float det = m.m[0][0] * (m.m[1][1] * m.m[2][2] - m.m[1][2] * m.m[2][1]) -
 				m.m[0][1] * (m.m[1][0] * m.m[2][2] - m.m[1][2] * m.m[2][0]) + 
 				m.m[0][2] * (m.m[1][0] * m.m[2][1] - m.m[1][1] * m.m[2][0]);
 	return det < 0;
