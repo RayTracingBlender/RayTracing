@@ -9,7 +9,7 @@ typedef double Float;
 #else
 typedef float Float;
 #endif
-
+namespace rt{
 static const Float Pi = 3.14159265358979323846;
 static const Float InvPi = 0.31830988618379067154;
 static const Float Inv2Pi = 0.15915494309189533577;
@@ -42,4 +42,5 @@ inline Float Radians(Float deg)
 inline Float Degrees(Float rad)
 {
 	return (180 / Pi) * rad;
+}
 }
