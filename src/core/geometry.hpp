@@ -1,9 +1,6 @@
 #pragma once
+#include "utility.hpp"
 
-#include <iostream>
-#include <assert.h>
-#include <algorithm>
-#define PI           3.14159265f
 /**
 	
 	Vectors
