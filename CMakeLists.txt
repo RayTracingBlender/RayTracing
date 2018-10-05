@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(jpyengine)
 #finde Python
-find_package( PythonLibs 3.5 REQUIRED )
+
+
+find_package( PythonLibs 3.5 REQUIRED)
 
 
 #Variablen setzen:

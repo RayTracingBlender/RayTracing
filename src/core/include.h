@@ -5,6 +5,7 @@
 #endif
 
 #include <Python.h>
+#include <arrayobject.h>
 
 #ifdef _DEBUG_WAS_DEFINED
 #define _DEBUG 1
