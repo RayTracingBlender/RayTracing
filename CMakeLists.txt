@@ -32,8 +32,8 @@ endif()
 set(Addons_name "JPCEngine")
 
 
-file(MAKE_DIRECTORY "&{Blender_addons_path}/JPCEngine/src")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "&{Blender_addons_path}/JPCEngine/src")
+file(MAKE_DIRECTORY "${Blender_addons_path}/JPCEngine/src")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${Blender_addons_path}/JPCEngine/src")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "&{Blender_addons_path}/JPCEngine/src")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${Blender_addons_path}/JPCEngine/src")
 add_subdirectory(src)
