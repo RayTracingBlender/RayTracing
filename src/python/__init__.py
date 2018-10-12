@@ -1,4 +1,5 @@
 #    Addon info
+from . import engine
 
 bl_info = {
     'name': 'JPCEngine',
@@ -9,7 +10,7 @@ bl_info = {
 
 import bpy
 def register():
-	pass
+	engine.register()
 def unregister():
-	pass
+	engine.unregister()
 	

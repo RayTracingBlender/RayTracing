@@ -1,6 +1,7 @@
 set(pythonfile_list 
 	__init__.py;
-	engine.py)
+	engine.py;
+	test.py)
 
 foreach(PYFILE ${pythonfile_list})
 	#configure_file( "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../${PYFILE}" COPYONLY)
