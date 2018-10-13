@@ -9,7 +9,7 @@ def fill_array(collection,prop,dtype,size=1):
     return arr
 
 def test(*args):
-    return _JPCEngine.size(*args)
+    return _JPCEngine.Triangle_geo(*args)
 
 def mesh_add(*args):
     #bpy.types.JPCENGINE.test(bpy.data.meshes['Cube'])
