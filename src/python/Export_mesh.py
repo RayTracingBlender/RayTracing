@@ -4,6 +4,7 @@ import numpy as np
 import bpy
 
 
+
 def get_arrays(obj,scene):
     #object to world transformation
     transform=np.array(obj.matrix_world,copy=False)

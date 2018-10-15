@@ -1,5 +1,6 @@
 set(pythonfile_list 
 	__init__.py;
+	Scene_types.py;
 	engine.py;
 	test.py)
 
@@ -16,3 +17,4 @@ foreach(PYFILE ${pythonfile_list})
 		message(SEND_ERROR "${PYFILE} exestiert nicht in ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../")
 	endif()
 endforeach()
+add_subdirectory(Shapes)
