@@ -16,7 +16,7 @@ LightFlags::Infinite
 namespace rt{
 
 	class Scene {
-	//in der Scenen klasse werden alle Objekte und damit alle informationen über eine Szene gespeichert
+	//in der Scenen klasse werden alle Objekte und damit alle informationen Ã¼ber eine Szene gespeichert
 	public:
 		//Konstruktor 
 		Scene(std::shared_ptr<Primitive> aggregate, const std::vector<std::shared_ptr<Ligth>> &lights)
@@ -32,10 +32,10 @@ namespace rt{
 
 		//Weltbegraenzung
 		const Bounds3f &WorldBound() const { return worldBound };
-		//gibt zurück trifft Strahl auf irgendwelche Primitives
-		//Außerdem fuellt es Daten in die SurfaceInteraction über den nächsten Punkt, an dem der Strahl diese trifft.
+		//gibt zurÃ¼ck trifft Strahl auf irgendwelche Primitives
+		//AuÃŸerdem fuellt es Daten in die SurfaceInteraction Ã¼ber den nÃ¤chsten Punkt, an dem der Strahl diese trifft.
 		bool Intersect(const Ray &ray, SurfaceInteraction *isect) const;
-		//gibt nur zurück ob ei Strahl auf irgendwelche Primitives trifft.
+		//gibt nur zurÃ¼ck ob ei Strahl auf irgendwelche Primitives trifft.
 		//Bessere Performance aus Intersect
 		bool IntersectP(const Ray &ray) const;
 
